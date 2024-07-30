@@ -3,6 +3,8 @@
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.5",
-    "react-router-dom": "^6.25.1"
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "react-router-dom": "^6.25.1",
+    "styled-components": "^6.1.12"
   }
 }
