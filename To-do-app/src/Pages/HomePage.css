@@ -1,0 +1,59 @@
+.wrapper2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.3fr 1fr 1fr 1fr 1fr ;
+    background-color: rgb(202, 8, 8);
+    height: 100vh;
+    gap: 2px;
+    grid-template-areas:
+        "Navbar Navbar Navbar Navbar"
+        "Left-container Left-container Right-container Right-container"
+        "Left-container Left-container Right-container Right-container"
+        "Left-container Left-container Right-container Right-container"
+        "Left-container Left-container Right-container Right-container";
+}
+
+.Navbar {
+    grid-area: Navbar;
+    /* background-color: blueviolet; */
+
+}
+
+.Left-container {
+     grid-area: Left-container;
+     background-color: coral; 
+      border-radius: 5%; 
+    border: 1px white solid;
+    
+    
+}
+
+.Right-container {
+    grid-area: Right-container;
+    background-color: rgb(58, 226, 24); 
+     border-radius: 5%; 
+    border: 1px white solid;
+    
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; */
+    /* display: flex;
+    justify-content: center; */
+
+}
+.Profile{
+    /* background-color: darkseagreen; */
+    height:10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border-radius: 50px; */
+}
+.Calendar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:90%;
+    border-radius: 50px;
+}

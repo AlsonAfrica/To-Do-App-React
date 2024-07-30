@@ -1,0 +1,12 @@
+.Form {
+    /* background-color: white; */
+    border-radius: 20px;
+    /* max-height: 600px; */
+}
+.Form p{
+   text-align: center;
+   padding-top: 7px;
+}
+.Form span{
+   text-align: center;
+}
