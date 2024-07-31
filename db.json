@@ -1,15 +1,119 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "username": "user1",
-        "password": "password1"
-      },
-      {
-        "id": 2,
-        "username": "user2",
-        "password": "password2"
-      }
-    ]
-  }
-  
+  "users": [
+    {
+      "id": "1",
+      "username": "user1",
+      "password": "password1"
+    },
+    {
+      "id": "2",
+      "username": "user2",
+      "password": "password2"
+    },
+    {
+      "id": "b539",
+      "username": "thandolwakheradebe@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "61ee",
+      "username": "thandolwakheradebe@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "1f2a",
+      "username": "Sbuda",
+      "password": "909"
+    },
+    {
+      "id": "d68d",
+      "username": "Sbuda",
+      "password": "909"
+    },
+    {
+      "id": "4c80",
+      "username": "LeaderShip Thando",
+      "password": "123"
+    },
+    {
+      "id": "25ad",
+      "username": "ten_thousand_dollars_",
+      "password": "123"
+    },
+    {
+      "id": "1008",
+      "username": "ten_thousand_dollars_",
+      "password": "123"
+    },
+    {
+      "id": "040b",
+      "username": "ten_thousand_dollars_",
+      "password": "123"
+    },
+    {
+      "id": "8d20",
+      "username": "ten_thousand_dollars_",
+      "password": "123"
+    },
+    {
+      "id": "8b3e",
+      "username": "ten_thousand_dollars_",
+      "password": "123"
+    },
+    {
+      "id": "5213",
+      "username": "ten_thousand_dollars_",
+      "password": "123"
+    },
+    {
+      "id": "8607",
+      "username": "ten_thousand_dollars_",
+      "password": "123"
+    },
+    {
+      "id": "3411",
+      "username": "Sbuda",
+      "password": "321"
+    },
+    {
+      "id": "f308",
+      "username": "Sbuda",
+      "password": "321"
+    },
+    {
+      "id": "4f08",
+      "username": "nhlanhla",
+      "password": "123"
+    },
+    {
+      "id": "215c",
+      "username": "nhlanhla",
+      "password": "123"
+    },
+    {
+      "id": "dfe3",
+      "username": "Sbuda",
+      "password": "123"
+    },
+    {
+      "id": "8d26",
+      "username": "LeaderShip Thando",
+      "password": "123"
+    },
+    {
+      "id": "1651",
+      "username": "neo",
+      "password": "098"
+    },
+    {
+      "id": "4b40",
+      "username": "neo",
+      "password": "123"
+    },
+    {
+      "id": "5bf9",
+      "username": "Alson",
+      "password": "123"
+    }
+  ]
+}

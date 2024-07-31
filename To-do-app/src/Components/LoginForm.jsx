@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link for navigation
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './LoginForm.css';
 import Loader from './Loader';
+import axios from 'axios';
 
 const LoginForm = () => {
     const [isSignUp, setIsSignUp] = useState(false);
@@ -14,48 +15,88 @@ const LoginForm = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
-    const [loginSuccessful, setLoginSuccessful] = useState(false);
+    const [error, setError] = useState('');
+    const [redirectToHome, setRedirectToHome] = useState(false);
+
+    const navigate = useNavigate(); // Initialize navigate hook
 
     const handleModeSwitch = () => {
-        setIsSignUp((prevMode) => !prevMode);
+        setIsSignUp(prevMode => !prevMode);
         setIsForgotPassword(false);
     };
 
     const handleForgotPasswordSwitch = () => {
         setIsSignUp(false);
-        setIsForgotPassword((prevMode) => !prevMode);
+        setIsForgotPassword(prevMode => !prevMode);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true); // Show the loader
-        setTimeout(() => {
-            if (isForgotPassword) {
-                if (password !== confirmPassword) {
-                    console.error('Passwords do not match!');
-                    setLoading(false);
-                    return;
-                }
-                console.log('Resetting Password');
-            } else if (isSignUp) {
-                if (password !== confirmPassword) {
-                    console.error('Passwords do not match!');
-                    setLoading(false);
-                    return;
-                }
-                console.log('Signing Up');
-            } else {
-                console.log('Signing In');
-                if (username === 'user' && password === 'password') { // Example condition
-                    setLoginSuccessful(true);
-                    // Redirect or other logic
-                } else {
-                    console.error('Invalid username or password');
-                }
-            }
+
+        // Reset error state
+        setError('');
+
+        // Check if fields are empty
+        if (!username || !password || (isSignUp && !confirmPassword)) {
+            setError('All fields are required!');
             setLoading(false);
-        }, 2000);
+            return;
+        }
+
+        if (isForgotPassword) {
+            if (password !== confirmPassword) {
+                setError('Passwords do not match!');
+                setLoading(false);
+                return;
+            }
+            // Add logic for resetting password
+            console.log('Resetting Password');
+        } else if (isSignUp) {
+            if (password !== confirmPassword) {
+                setError('Passwords do not match!');
+                setLoading(false);
+                return;
+            }
+            // Add logic for signing up
+            try {
+                const response = await axios.post('http://localhost:3000/users/', {
+                    username,
+                    password
+                });
+                if (response.status === 201) {
+                    setLoading(false);
+                    alert('Registration successful! Please sign in.');
+                    setIsSignUp(false); // Switch to Sign-In mode
+                }
+            } catch (err) {
+                setError('Sign-Up failed. Please try again.');
+                setLoading(false);
+            }
+        } else {
+            // Add logic for signing in
+            setLoading(true); // Show the loader
+            try {
+                const response = await axios.get('http://localhost:3000/users');
+                const users = response.data;
+                const user = users.find(user => user.username === username && user.password === password);
+
+                if (user) {
+                    setLoading(false);
+                    setRedirectToHome(true); // Trigger redirection
+                } else {
+                    setError('Invalid username or password');
+                    setLoading(false);
+                }
+            } catch (err) {
+                setError('Sign-In failed. Please try again.');
+                setLoading(false);
+            }
+        }
     };
+
+    if (redirectToHome) {
+        navigate('/HomePage');
+    }
 
     return (
         <div>
@@ -84,6 +125,8 @@ const LoginForm = () => {
                                 type="text"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
+                                error={!!error}
+                                helperText={error && username === '' ? 'Username is required' : ''}
                             />
                             <TextField
                                 id="password"
@@ -92,6 +135,8 @@ const LoginForm = () => {
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                error={!!error}
+                                helperText={error && password === '' ? 'Password is required' : ''}
                             />
                             {isSignUp && (
                                 <TextField
@@ -101,6 +146,8 @@ const LoginForm = () => {
                                     type="password"
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
+                                    error={!!error}
+                                    helperText={error && confirmPassword === '' ? 'Confirm Password is required' : ''}
                                 />
                             )}
                         </>
@@ -114,6 +161,8 @@ const LoginForm = () => {
                                 type="text"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
+                                error={!!error}
+                                helperText={error && username === '' ? 'Username is required' : ''}
                             />
                             <TextField
                                 id="new-password"
@@ -122,6 +171,8 @@ const LoginForm = () => {
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                error={!!error}
+                                helperText={error && password === '' ? 'New Password is required' : ''}
                             />
                             <TextField
                                 id="confirm-new-password"
@@ -130,6 +181,8 @@ const LoginForm = () => {
                                 type="password"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
+                                error={!!error}
+                                helperText={error && confirmPassword === '' ? 'Confirm New Password is required' : ''}
                             />
                         </>
                     )}
@@ -143,21 +196,26 @@ const LoginForm = () => {
                     paddingTop={3}
                     gap="10px"
                 >
-                    <Link to="/HomePage" onClick={handleModeSwitch} style={{ textDecoration: 'none' }}>
-                         <Button variant="contained" size="small" type="submit">
+                    <Button variant="contained" size="small" type="submit">
                         {isForgotPassword ? 'Reset Password' : isSignUp ? 'Sign-Up' : 'Sign-In'}
                     </Button>
-                    
-                    </Link>
                     {!isForgotPassword && (
-                      
-                            <Button variant="contained" size="small" style={{ marginTop: '0px' }}>
-                                {isSignUp ? 'Switch to Sign-In' : 'Sign-Up'}
-                            </Button>
+                        <Button
+                            variant="contained"
+                            size="small"
+                            style={{ marginTop: '0px' }}
+                            onClick={handleModeSwitch} // Add onClick handler to switch modes
+                        >
+                            {isSignUp ? 'Switch to Sign-In' : 'Sign-Up'}
+                        </Button>
                     )}
                 </Box>
                 {!isSignUp && !isForgotPassword && (
-                    <Typography variant="body2" onClick={handleForgotPasswordSwitch} style={{ cursor: 'pointer', textAlign: 'center' }}>
+                    <Typography
+                        variant="body2"
+                        onClick={handleForgotPasswordSwitch}
+                        style={{ cursor: 'pointer', textAlign: 'center' }}
+                    >
                         Forgot password? Try Me!
                     </Typography>
                 )}
@@ -170,7 +228,11 @@ const LoginForm = () => {
                         paddingBottom={3}
                         paddingTop={3}
                     >
-                        <Button variant="contained" size="small" onClick={() => setIsForgotPassword(false)}>
+                        <Button
+                            variant="contained"
+                            size="small"
+                            onClick={handleForgotPasswordSwitch} // Add onClick handler to switch back to Sign-In
+                        >
                             Switch to Sign-In
                         </Button>
                     </Box>
