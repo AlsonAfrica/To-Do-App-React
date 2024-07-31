@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link for navigation
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './LoginForm.css';
-import Loader from './Loader'; // Import the Loader component
+import Loader from './Loader';
 
 const LoginForm = () => {
     const [isSignUp, setIsSignUp] = useState(false);
@@ -13,6 +14,7 @@ const LoginForm = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const [loginSuccessful, setLoginSuccessful] = useState(false);
 
     const handleModeSwitch = () => {
         setIsSignUp((prevMode) => !prevMode);
@@ -28,7 +30,6 @@ const LoginForm = () => {
         e.preventDefault();
         setLoading(true); // Show the loader
         setTimeout(() => {
-            // Simulate async operation
             if (isForgotPassword) {
                 if (password !== confirmPassword) {
                     console.error('Passwords do not match!');
@@ -36,7 +37,6 @@ const LoginForm = () => {
                     return;
                 }
                 console.log('Resetting Password');
-                // Add Forgot Password logic here
             } else if (isSignUp) {
                 if (password !== confirmPassword) {
                     console.error('Passwords do not match!');
@@ -44,18 +44,22 @@ const LoginForm = () => {
                     return;
                 }
                 console.log('Signing Up');
-                // Add Sign-Up logic here
             } else {
                 console.log('Signing In');
-                // Add Sign-In logic here
+                if (username === 'user' && password === 'password') { // Example condition
+                    setLoginSuccessful(true);
+                    // Redirect or other logic
+                } else {
+                    console.error('Invalid username or password');
+                }
             }
-            setLoading(false); // Hide the loader after processing
-        }, 2000); // Simulate 2 seconds of loading time
+            setLoading(false);
+        }, 2000);
     };
 
     return (
         <div>
-            {loading && <Loader />} {/* Show loader when loading */}
+            {loading && <Loader />}
             <form className='Form' onSubmit={handleSubmit}>
                 <Typography fontSize={50}>
                     {isForgotPassword ? 'Reset Password' : isSignUp ? 'Sign-Up' : 'Sign-In'}
@@ -139,13 +143,17 @@ const LoginForm = () => {
                     paddingTop={3}
                     gap="10px"
                 >
-                    <Button variant="contained" size="small" type="submit">
+                    <Link to="/HomePage" onClick={handleModeSwitch} style={{ textDecoration: 'none' }}>
+                         <Button variant="contained" size="small" type="submit">
                         {isForgotPassword ? 'Reset Password' : isSignUp ? 'Sign-Up' : 'Sign-In'}
                     </Button>
+                    
+                    </Link>
                     {!isForgotPassword && (
-                        <Button variant="contained" size="small" onClick={handleModeSwitch} style={{ marginTop: '0px' }}>
-                            {isSignUp ? 'Switch to Sign-In' : 'Sign-Up'}
-                        </Button>
+                      
+                            <Button variant="contained" size="small" style={{ marginTop: '0px' }}>
+                                {isSignUp ? 'Switch to Sign-In' : 'Sign-Up'}
+                            </Button>
                     )}
                 </Box>
                 {!isSignUp && !isForgotPassword && (
@@ -173,6 +181,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
-
-
