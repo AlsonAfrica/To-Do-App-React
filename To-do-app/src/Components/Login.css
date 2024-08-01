@@ -17,7 +17,10 @@
     border-radius: 25px;
 }
 .container-left{
-    background-color: rgb(255, 255, 255);
+    background-image: url('../images/pexels-rdne-8581034.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
     border-radius: 25px;
     width:45.8%;
     height: 80%;
@@ -97,7 +100,7 @@
 .intro h1{
     font-weight: lighter;
 }
-@media only screen and  (max-width:1024px){
+@media only screen and  (max-width:600px){
     .wrapper {
            flex-direction: column-reverse;
     }
@@ -106,7 +109,7 @@
     }
     .container-right{
         height: 50%;
-        width:50px;
+        /* width:100%; */
     }
     .container-left{
         width: 50%;
@@ -115,4 +118,9 @@
         width: 50%;
     }
 }
+@media only screen and (max-width:500px){
+    .container-right{
+        border:none;
+    }
 
+}

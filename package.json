@@ -7,6 +7,7 @@
     "@mui/material": "^5.16.5",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "axios": "^1.7.2",
+    "react-icons": "^5.2.1",
     "react-router-dom": "^6.25.1",
     "styled-components": "^6.1.12"
   },

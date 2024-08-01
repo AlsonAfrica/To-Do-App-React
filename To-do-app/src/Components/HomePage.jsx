@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
+import AnchorTemporaryDrawer from './Drawer';
 
 const HomePage = () => {
     const [todos, setTodos] = useState([]);
@@ -36,12 +37,14 @@ const HomePage = () => {
         <div className="home-page">
             <header className="header">
             <Link to="/" style={{ textDecoration: 'none' }}>
-                <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}>
-                    <ExitToAppIcon />
+                <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}
+                title="Logout" 
+                >
+                    <ExitToAppIcon /> 
                 </button>
             </Link>
-             
-                <h1>To-Do App</h1>
+                <h1 className='Nav-Logo'> <span className='W'>W</span><span className='E'>E</span><span className='E'>E</span><span className='K'>K</span><span className='L'>L - </span><span  className='Y'>Y</span> To-Do App</h1>
+                <AnchorTemporaryDrawer/>
             </header>
             <div className="content">
                 <div className="form-container">

@@ -38,7 +38,7 @@ const ToDoForm = ({ addTodo, updateTodo, editingTodo, clearEdit, viewTodo }) => 
             });
         }
         setTask('');
-        setPriority('medium');
+        setPriority('');
         setDate('');
         setTime('');
     };
@@ -57,9 +57,9 @@ const ToDoForm = ({ addTodo, updateTodo, editingTodo, clearEdit, viewTodo }) => 
                     required
                 />
                 <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
+                    <option value="low" style={{ color: 'green' }}>Low</option>
+                    <option value="medium"style={{ color: 'orange' }}>Medium</option>
+                    <option value="high" style={{ color: 'Red' }}>High</option>
                 </select>
                 <input
                     type="date"

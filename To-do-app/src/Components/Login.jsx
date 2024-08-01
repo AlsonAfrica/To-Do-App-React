@@ -1,5 +1,6 @@
 import './Login.css'
 import LoginForm from './LoginForm';
+// import image from '../images/pexels-mart-production-7718707.jpg'
 
 const Login = () => {
     return (
@@ -12,7 +13,7 @@ const Login = () => {
             </div> */}
             </div>
             <div className="container-left-main">
-               <h1>WANT TO BE EFFECIENT<br/> AND PERFORM AT YOUR PEAK! <br/> PLAN YOUR EFFORTS WITH WEEKLY.</h1>
+               <h1>WANT TO BE EFFECIENT<br/> AND PERFORM AT YOUR PEAK! <br/> PLAN YOUR EFFORTS WITH WEEKLY-APP.</h1>
             </div>
             <div className="container-left-footer"></div>
           </div>

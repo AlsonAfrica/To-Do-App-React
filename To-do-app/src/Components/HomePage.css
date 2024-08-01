@@ -20,6 +20,10 @@ body {
     text-align: center;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
 }
 
 .content {
@@ -32,6 +36,7 @@ body {
 
 .form-container, .list-container {
     flex: 1;
+   
 }
 
 @media (max-width: 768px) {
@@ -40,3 +45,25 @@ body {
     }
 }
 
+.heading{
+    color:yellow;
+}
+.Y{ 
+    background: linear-gradient(to right, rgba(233, 10, 40, 0) 0%, rgba(18, 199, 199, 0.5) 20%, rgba(211, 6, 142, 0) 61%), linear-gradient(rgb(197, 23, 159) 52%, rgb(168, 7, 218) 60%, rgb(14, 26, 197) 61%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.icon{
+    font-size: 30px;
+    color:blue;
+}
+@media (max-width: 600px){
+    .Nav-Logo{
+        font-size: 12px;
+        padding-left:60px;
+    }
+    .icon{
+        font-size: 22px;
+    }
+}

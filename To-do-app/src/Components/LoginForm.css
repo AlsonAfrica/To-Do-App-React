@@ -10,3 +10,8 @@
 .Form span{
    text-align: center;
 }
+/* @media only screen and  (max-width:600px){
+   .textfield {
+          width: 20%;
+    }
+   } */
