@@ -7,13 +7,13 @@ const Login = () => {
         <div className='wrapper'>
           <div className='container-left'>
             <div className="container-left-header">
-               <div className="Logo-text"><p1><span className='W'>W</span><span className='E'>E</span><span  className='E-2'>E</span><span  className='K'>K</span><span  className='L'>L</span></p1></div>
+               <div className="Logo-text"><p1><span className='W'>W</span><span className='E'>E</span><span  className='E-2'>E</span><span  className='K'>K</span><span  className='L'>L - </span><span className='Y'>Y</span></p1></div>
                <p> <span className='Plan'>Plan</span>,<span className="Prepare">Prepare</span>,<span className="Do">Do!</span></p>
                 {/* <div className="Logo"><img src={logo} alt="Logo"/>
             </div> */}
             </div>
             <div className="container-left-main">
-               <h1>WANT TO BE EFFECIENT<br/> AND PERFORM AT YOUR PEAK! <br/> PLAN YOUR EFFORTS WITH WEEKLY-APP.</h1>
+               <h1 className="Slogan">WANT TO BE EFFECIENT<br/> AND PERFORM AT YOUR PEAK! <br/> PLAN YOUR EFFORTS WITH WEEKLY-APP.</h1>
             </div>
             <div className="container-left-footer"></div>
           </div>

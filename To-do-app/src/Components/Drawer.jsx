@@ -24,13 +24,16 @@ export default function AnchorTemporaryDrawer() {
     right: false,
   });
 
-  const [openDialog, setOpenDialog] = useState(false); // State for dialog
+  const [openDialog, setOpenDialog] = useState(false); 
 
-  const [form, setForm] = useState({
-    username: '',
-    password: '',
-    confirmPassword: '',
-  });
+  // const [form, setForm] = useState({
+  //   username: '',
+  //   password: '',
+  //   confirmPassword: '',
+  // });
+  const [form, setForm] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const [error, setError] = useState('');
 
@@ -60,9 +63,9 @@ export default function AnchorTemporaryDrawer() {
       setError('Passwords do not match!');
       return;
     }
-    // Handle form submission here
+   
     console.log('Form submitted:', form);
-    handleCloseDialog(); // Close dialog on successful submission
+    handleCloseDialog(); 
   };
 
   const list = (anchor) => (

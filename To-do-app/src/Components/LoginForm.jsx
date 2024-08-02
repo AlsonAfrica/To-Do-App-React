@@ -46,7 +46,6 @@ const LoginForm = () => {
                 return;
             }
             try {
-                // Add API call for password reset here
                 console.log('Resetting Password');
                 alert('Password reset successful!');
             } catch (err) {
@@ -65,7 +64,7 @@ const LoginForm = () => {
                 });
                 if (response.status === 201) {
                     alert('Registration successful! Please sign in.');
-                    setIsSignUp(false); 
+                    setIsSignUp(false);
                 }
             } catch (err) {
                 setError('Sign-Up failed. Please try again.');
@@ -77,6 +76,8 @@ const LoginForm = () => {
                 const user = users.find(user => user.username === username && user.password === password);
 
                 if (user) {
+                    // Store user ID in localStorage
+                    localStorage.setItem('userId', user.id);
                     navigate('/HomePage');
                 } else {
                     setError('Invalid username or password');

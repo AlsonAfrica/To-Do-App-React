@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import './ToDoForm.css'; // Create this CSS file for styling
+import './ToDoForm.css';
+import { InputLabel } from '@mui/material';
+
+const priorityStyles = {
+    Priorities: { color: 'white' },
+    low: { backgroundColor: 'rgb(80, 200, 120)', color: 'white' },
+    medium: { backgroundColor: 'rgb(255, 255, 143)', color: 'black' },
+    high: { backgroundColor: '	rgb(233, 116, 81)', color: 'white' },
+   
+};
 
 const ToDoForm = ({ addTodo, updateTodo, editingTodo, clearEdit, viewTodo }) => {
     const [task, setTask] = useState('');
-    const [priority, setPriority] = useState('medium');
+    const [priority, setPriority] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +47,7 @@ const ToDoForm = ({ addTodo, updateTodo, editingTodo, clearEdit, viewTodo }) => 
             });
         }
         setTask('');
-        setPriority('');
+        setPriority('medium');
         setDate('');
         setTime('');
     };
@@ -49,6 +58,7 @@ const ToDoForm = ({ addTodo, updateTodo, editingTodo, clearEdit, viewTodo }) => 
     return (
         <div className="todo-form">
             <form onSubmit={handleSubmit}>
+            <InputLabel>Task Name</InputLabel>
                 <input
                     type="text"
                     value={task}
@@ -56,16 +66,24 @@ const ToDoForm = ({ addTodo, updateTodo, editingTodo, clearEdit, viewTodo }) => 
                     placeholder="Enter task"
                     required
                 />
-                <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-                    <option value="low" style={{ color: 'green' }}>Low</option>
-                    <option value="medium"style={{ color: 'orange' }}>Medium</option>
-                    <option value="high" style={{ color: 'Red' }}>High</option>
+                <InputLabel>Priority</InputLabel>
+                <select
+                    value={priority}
+                    onChange={(e) => setPriority(e.target.value)}
+                    style={priorityStyles[priority]}
+                     placeholder="Priority"
+                >   
+                    <option value="low" style={priorityStyles.low}>Low</option>
+                    <option value="medium" style={priorityStyles.medium}>Medium</option>
+                    <option value="high" style={priorityStyles.high}>High</option>
                 </select>
+                <InputLabel>Date</InputLabel>
                 <input
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                 />
+                <InputLabel>Time: AM-PM</InputLabel>
                 <input
                     type="time"
                     value={time}
@@ -90,4 +108,3 @@ const ToDoForm = ({ addTodo, updateTodo, editingTodo, clearEdit, viewTodo }) => 
 };
 
 export default ToDoForm;
-
