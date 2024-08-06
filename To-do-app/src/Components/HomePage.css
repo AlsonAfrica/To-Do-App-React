@@ -33,6 +33,18 @@ body {
     justify-content: space-around;
 
 }
+.search-container {
+    margin: 20px;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 
 .content {
     display: flex;
@@ -62,16 +74,29 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.Nav-Logo{
+    margin-top: 20px;
+}
 .icon{
     font-size: 30px;
     color:blue;
 }
 @media (max-width: 600px){
     .Nav-Logo{
-        font-size: 12px;
+        font-size: 20px;
         padding-left:60px;
+        text-align: center;
+        padding-right:60px;
     }
     .icon{
         font-size: 22px;
+    }
+    .search-bar{
+       margin-left: 20px;
+    }
+}
+@media (max-width:320px){
+    .search-bar{
+        margin-left: 20px;
     }
 }

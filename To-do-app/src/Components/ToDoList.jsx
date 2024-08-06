@@ -23,7 +23,7 @@ const ToDoList = ({ todos, setEditingTodo, deleteTodo, setViewTodo }) => {
                     <div className="todo-actions">
                         <button onClick={() => setEditingTodo(todo)}>Edit</button>
                         <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-                        <button onClick={() => setViewTodo(todo)}>View</button>
+                        {/* <button onClick={() => setViewTodo(todo)}>View</button> */}
                     </div>
                 </li>
             ))}

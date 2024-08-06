@@ -11,6 +11,7 @@ const HomePage = () => {
     const [todos, setTodos] = useState([]);
     const [editingTodo, setEditingTodo] = useState(null);
     const [viewTodo, setViewTodo] = useState(null);
+    const [searchQuery, setSearchQuery] = useState(''); // State for search query
 
     const userId = localStorage.getItem('userId'); 
 
@@ -44,12 +45,20 @@ const HomePage = () => {
 
     const deleteTodo = (id) => {
         setTodos(todos.filter(todo => todo.id !== id));
-        
     };
 
     const clearEdit = () => {
         setEditingTodo(null);
     };
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
+    // Filter todos based on search query
+    const filteredTodos = todos.filter(todo =>
+        todo.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <div className="home-page">
@@ -59,12 +68,27 @@ const HomePage = () => {
                         <ExitToAppIcon />
                     </button>
                 </Link>
-                <h1 className='Nav-Logo'>
+                  <div className="search-container">
+                    <input
+                        type="text"
+                        placeholder="Search tasks..."
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                        className="search-bar"
+                    />
+                </div>
+                {/* <h1 className='Nav-Logo'>
+                    <span className='W'>W</span><span className='E'>E</span><span className='E'>E</span><span className='K'>K</span><span className='L'>L - </span><span className='Y'>Y</span> To-Do App
+                </h1> */}
+                
+                <AnchorTemporaryDrawer />
+              
+            </header>
+            <h1 className='Nav-Logo'>
                     <span className='W'>W</span><span className='E'>E</span><span className='E'>E</span><span className='K'>K</span><span className='L'>L - </span><span className='Y'>Y</span> To-Do App
                 </h1>
-                <AnchorTemporaryDrawer />
-            </header>
             <div className="content">
+                
                 <div className="form-container">
                     <ToDoForm 
                         addTodo={addTodo}
@@ -76,7 +100,7 @@ const HomePage = () => {
                 </div>
                 <div className="list-container">
                     <ToDoList 
-                        todos={todos}
+                        todos={filteredTodos} // Use filtered todos
                         setEditingTodo={setEditingTodo}
                         deleteTodo={deleteTodo}
                         setViewTodo={setViewTodo}
