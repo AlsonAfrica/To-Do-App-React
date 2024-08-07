@@ -60,4 +60,4 @@ This will start the development server and open the application in your default 
 - Database Port: The JSON server runs on port 5000 by default. Ensure there are no conflicts with other services using this port or alternatively use port 5001.
 
 # License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MLab License. See the LICENSE file for details.
